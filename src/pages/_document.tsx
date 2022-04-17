@@ -1,4 +1,10 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document'
 
 class TrimexDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -10,10 +16,25 @@ class TrimexDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+          />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin=""
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Rambla&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
-        <Main />
-        <NextScript />
+          <Main />
+          <NextScript />
         </body>
       </Html>
     )

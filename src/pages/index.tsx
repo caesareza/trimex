@@ -1,7 +1,12 @@
 import type { NextPage } from 'next'
+import HomeBanner from '@/components/General/HomeBanner'
 
 const Home: NextPage = () => {
-  return <div>asd</div>
+  return (
+    <section id="home">
+      <HomeBanner />
+    </section>
+  )
 }
 
 export default Home

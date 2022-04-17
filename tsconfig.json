@@ -17,7 +17,9 @@
     "paths": {
       "@/components/*": ["src/components/*"],
       "@/styles/*": ["src/styles/*"],
-      "@/lib/*": ["src/lib/*"]
+      "@/lib/*": ["src/lib/*"],
+      "@/type/*": ["src/type/*"],
+      "@/data/*": ["src/data/*"]
     },
     "incremental": true
   },
