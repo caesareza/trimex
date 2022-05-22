@@ -1,10 +1,90 @@
 import type { NextPage } from 'next'
 import HomeBanner from '@/components/General/HomeBanner'
 
+type IDataCargo = {
+  id: string
+  image: string
+  title: string
+  desc: string
+}
+const dataCargo: IDataCargo[] = [
+  {
+    id: '01',
+    image: '/images/cargo/package.png',
+    title: 'Give us a Details',
+    desc: 'Extreme attention to detail is the essence of Boo’s unique.',
+  },
+  {
+    id: '02',
+    image: '/images/cargo/cargo.png',
+    title: 'Provide an quote',
+    desc: 'Extreme attention to detail is the essence of Boo’s unique.',
+  },
+  {
+    id: '03',
+    image: '/images/cargo/air-plane.png',
+    title: 'Confirm Your Date',
+    desc: 'Extreme attention to detail is the essence of Boo’s unique.',
+  },
+  {
+    id: '04',
+    image: '/images/cargo/shipping.png',
+    title: 'move easy & stress free',
+    desc: 'Extreme attention to detail is the essence of Boo’s unique.',
+  },
+]
+
 const Home: NextPage = () => {
   return (
     <section id="home">
       <HomeBanner />
+
+      <div className="bg-yellow-300 -mt-2">
+        <div className="container mx-auto flex">
+          <div className="p-5 py-10 flex items-center justify-center w-full">
+            <h2 className="text-2xl font-bold">Enter your tracking code #</h2>
+            <input className="p-3 mx-3 w-1/2" placeholder="Nomor resi" />
+            <button type="submit" className="bg-black p-3 text-white w-72">
+              Track your cargo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto my-10">
+        <div className="p-5 gap-5 grid grid-cols-2 lg:grid-cols-4">
+          {dataCargo.map((value, index) => (
+            <div key={index}>
+              <img src={value.image} alt={value.title} width={100} />
+              <div className="flex items-center my-3 font-bold">
+                <div className="mr-2 bg-yellow-300 p-1 px-2">{value.id}</div>
+                <div>{value.title}</div>
+              </div>
+              <p className="text-slate-400">{value.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex items-center bg-slate-800 text-white">
+        <div className="w-1/2 bg-slate-700/70 flex justify-end">
+          <h2 className="p-10 text-2xl">
+            We give you complete control of your shipment.
+          </h2>
+        </div>
+        <div className="w-full p-5">
+          <h2 className="text-xl font-bold mb-2">Our Company</h2>
+          <p>
+            Our team discussed every single detail to make sure Boo is the most
+            versatile and unique theme created so far.
+          </p>
+          <p>
+            Now were up in the big leagues getting’ our turn at bat. And when
+            the odds are against him and their dangers work to do Duis aute
+            irure dolorEquita Group is a representative logistics operator.
+          </p>
+        </div>
+      </div>
     </section>
   )
 }
