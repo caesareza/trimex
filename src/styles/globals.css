@@ -9,3 +9,7 @@ body {
   font-family: 'Rambla', sans-serif;
   background: rgb(51 65 85);
 }
+
+#site p {
+  margin-bottom: 15px;
+}

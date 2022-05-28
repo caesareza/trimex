@@ -1,5 +1,7 @@
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import HomeBanner from '@/components/General/HomeBanner'
+import { ChangeEvent, useState } from 'react'
 
 type IDataCargo = {
   id: string
@@ -35,6 +37,15 @@ const dataCargo: IDataCargo[] = [
 ]
 
 const Home: NextPage = () => {
+  const [trackingCode, setTrackingCode] = useState<string>('')
+  const router = useRouter()
+
+  const handleInputTracking = (event: ChangeEvent<HTMLInputElement>) => {
+    setTrackingCode(event.target.value)
+  }
+
+  const handleTrackingCode = () => router.push(`/tracking/${trackingCode}`)
+
   return (
     <section id="home">
       <HomeBanner />
@@ -43,8 +54,16 @@ const Home: NextPage = () => {
         <div className="container mx-auto flex">
           <div className="p-5 py-10 flex items-center justify-center w-full">
             <h2 className="text-2xl font-bold">Enter your tracking code #</h2>
-            <input className="p-3 mx-3 w-1/2" placeholder="Nomor resi" />
-            <button type="submit" className="bg-black p-3 text-white w-72">
+            <input
+              className="p-3 mx-3 w-1/2"
+              placeholder="Nomor resi"
+              onChange={handleInputTracking}
+            />
+            <button
+              type="submit"
+              className="bg-black p-3 text-white w-72"
+              onClick={handleTrackingCode}
+            >
               Track your cargo
             </button>
           </div>

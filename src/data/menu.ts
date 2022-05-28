@@ -18,8 +18,8 @@ export const menu: IMenu[] = [
   {
     id: 3,
     label: 'Produk dan Layanan',
-    href: '/produk-dan-layanan',
-    as: '/produk-dan-layanan',
+    href: '/site/[slug]',
+    as: '/site/produk-dan-layanan',
     keys: 'produk-dan-layanan',
   },
 ].map((link: IMenu) => {

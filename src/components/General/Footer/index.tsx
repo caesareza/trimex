@@ -30,16 +30,18 @@ export default function Footer() {
           </div>
           <nav className="text-center mb-5">
             <Link href="/">
-              <a className="px-2 text-slate-400 hover:text-yellow-300">Home</a>
+              <a className="px-2 text-slate-400 hover:text-yellow-300">
+                Beranda
+              </a>
             </Link>
             <Link href="/">
               <a className="px-2 text-slate-400 hover:text-yellow-300">
-                About Us
+                Tentang Perusahaan
               </a>
             </Link>
             <Link href="/">
               <a className="px-2 text-slate-400 hover:text-yellow-300 ">
-                Contact Us
+                Kontak Kami
               </a>
             </Link>
           </nav>
