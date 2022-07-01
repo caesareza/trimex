@@ -1,8 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
+import { menu } from '@/data/menu'
+import { IMenu } from '@/type/global'
 
 export default function Footer() {
   const year = new Date().getFullYear()
+
   return (
     <footer className="bg-slate-700 text-white">
       <div className="container mx-auto">
@@ -29,21 +32,13 @@ export default function Footer() {
             </div>
           </div>
           <nav className="text-center mb-5">
-            <Link href="/">
-              <a className="px-2 text-slate-400 hover:text-yellow-300">
-                Beranda
-              </a>
-            </Link>
-            <Link href="/">
-              <a className="px-2 text-slate-400 hover:text-yellow-300">
-                Tentang Perusahaan
-              </a>
-            </Link>
-            <Link href="/">
-              <a className="px-2 text-slate-400 hover:text-yellow-300 ">
-                Kontak Kami
-              </a>
-            </Link>
+            {menu.map((value: IMenu) => (
+              <Link href={value.href} as={value.as} key={value.keys}>
+                <a className="px-2 text-slate-400 hover:text-yellow-300">
+                  {value.label}
+                </a>
+              </Link>
+            ))}
           </nav>
           <div className="border-t border-slate-500 text-center p-5">
             Copyright © {year} terimaexpress.com. All rights reserved.
