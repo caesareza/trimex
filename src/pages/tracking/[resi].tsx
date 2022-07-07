@@ -13,11 +13,6 @@ export default function Resi({ resi }: any) {
 
   return (
     <section id="tracking-order">
-      <div className="flex">
-        <div className="w-1/2 h-2 bg-yellow-300"></div>
-        <div className="w-full bg-yellow-500"></div>
-      </div>
-
       <div className="p-5 container mx-auto">
         <h1 className="text-2xl font-bold text-center">Track Your Order</h1>
         <div className="text-lg text-slate-600 mb-5">

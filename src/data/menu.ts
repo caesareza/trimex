@@ -22,6 +22,13 @@ export const menu: IMenu[] = [
     as: '/site/produk-dan-layanan',
     keys: 'produk-dan-layanan',
   },
+  {
+    id: 4,
+    label: 'Contact',
+    href: '/contact',
+    as: '/contact',
+    keys: 'contact',
+  },
 ].map((link: IMenu) => {
   link.keys = `main-menu-${link.id}`
   return link
