@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import HomeBanner from '@/components/General/HomeBanner'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 
 type IDataCargo = {
   id: string
@@ -39,12 +39,20 @@ const dataCargo: IDataCargo[] = [
 const Home: NextPage = () => {
   const [trackingCode, setTrackingCode] = useState<string>('')
   const router = useRouter()
+  const resiRef = useRef<HTMLInputElement>(null)
 
   const handleInputTracking = (event: ChangeEvent<HTMLInputElement>) => {
     setTrackingCode(event.target.value)
   }
 
-  const handleTrackingCode = () => router.push(`/tracking/${trackingCode}`)
+  const handleSubmitNoResi = () => {
+    if (trackingCode === '') {
+      resiRef.current!.focus()
+      return
+    }
+
+    router.push(`/tracking/${trackingCode}`)
+  }
 
   return (
     <section id="home">
@@ -58,11 +66,12 @@ const Home: NextPage = () => {
               className="p-3 my-2 mx-3 w-1/2"
               placeholder="Nomor resi"
               onChange={handleInputTracking}
+              ref={resiRef}
             />
             <button
               type="submit"
               className="bg-black p-3 text-white w-72"
-              onClick={handleTrackingCode}
+              onClick={handleSubmitNoResi}
             >
               Track your cargo
             </button>

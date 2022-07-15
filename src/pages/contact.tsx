@@ -14,7 +14,7 @@ const Contact = () => {
       ></iframe>
 
       <div className="container mx-auto">
-        <div className="grid grid-cols-3 gap-3 py-5">
+        <div className="grid grid-cols-3 gap-3 py-7">
           <div className="bg-gray-100 p-5">
             <div className="flex items-center">
               <div className="bg-white rounded-full block p-3 mr-3">
@@ -25,7 +25,7 @@ const Contact = () => {
                 <p className="text-gray-500">Sent email for more information</p>
               </div>
             </div>
-            <div className="p-2">info@terimaexpress.com</div>
+            <div className="p-2 mt-2">info@terimaexpress.com</div>
           </div>
           <div className="bg-gray-100 p-5">
             <div className="flex items-center">
@@ -37,7 +37,7 @@ const Contact = () => {
                 <p className="text-gray-500">Call for more information</p>
               </div>
             </div>
-            <div className="p-2">+62 098-098-098-09</div>
+            <div className="p-2 mt-2">+62 098-098-098-09</div>
           </div>
           <div className="bg-gray-100 p-5">
             <div className="flex items-center">
@@ -49,7 +49,7 @@ const Contact = () => {
                 <p className="text-gray-500">Our office address</p>
               </div>
             </div>
-            <div className="p-2">
+            <div className="p-2 mt-2">
               B2, Miranda City Tower <br />
               New York, US
             </div>

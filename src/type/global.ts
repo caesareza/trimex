@@ -5,3 +5,9 @@ export type IMenu = {
   href: string
   keys: string
 }
+
+export type IResponse = {
+  data: any
+  status: number
+  statusText: string
+}
