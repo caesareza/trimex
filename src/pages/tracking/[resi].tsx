@@ -1,15 +1,49 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaRegPaperPlane, FaHistory } from 'react-icons/fa'
 import { GiCargoShip, GiShipBow } from 'react-icons/gi'
 import { MdLocalShipping, MdTimelapse } from 'react-icons/md'
+import { IOrder } from '@/type/order'
+import { getOrderDetail } from '@/requests/services/order'
+import { IResponse } from '@/type/global'
+import TrackingLoader from '@/components/Loader/TrackingLoader'
+import { formatTanggal } from '@/requests/helper'
 
-export default function Resi({ resi }: any) {
+type IResi = {
+  resi: number
+}
+
+export default function Resi({ resi }: IResi) {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isDataNotFound, setIsDataNotFound] = useState<boolean>(false)
+  const [orderData, setOrderData] = useState<IOrder>()
+
   const fetchTrackingOrder = async () => {
-    console.log('resi', resi)
+    setIsLoading(true)
+
+    const response: any | IResponse = await getOrderDetail(resi)
+    if (response.status !== 200) {
+      setIsDataNotFound(true)
+      setIsLoading(false)
+    }
+
+    setOrderData(response.data.data)
+    setIsLoading(false)
   }
   useEffect(() => {
     fetchTrackingOrder()
   }, [])
+
+  if (isLoading) return <TrackingLoader />
+  if (isDataNotFound) {
+    return (
+      <div className="p-5 container mx-auto">
+        <h1 className="text-2xl font-bold text-center">Track Your Order</h1>
+        <p className="p-3 bg-amber-100 border border-amber-200 mt-5 text-amber-600 rounded">
+          Resi tidak ditemukan
+        </p>
+      </div>
+    )
+  }
 
   return (
     <section id="tracking-order">
@@ -33,14 +67,16 @@ export default function Resi({ resi }: any) {
                 <GiShipBow />
                 <span className="ml-1">From</span>
               </div>
-              <div className="text-2xl font-bold">Jakarta</div>
+              <div className="text-2xl font-bold">{orderData?.origin_name}</div>
             </div>
             <div className="border p-5">
               <div className="flex items-center text-gray-400">
                 <MdLocalShipping />
                 <span className="ml-1">To</span>
               </div>
-              <div className="text-2xl font-bold">Bali</div>
+              <div className="text-2xl font-bold">
+                {orderData?.shipping_rate_name}
+              </div>
             </div>
             <div className="border p-5">
               <div className="flex items-center text-gray-400">
@@ -54,7 +90,7 @@ export default function Resi({ resi }: any) {
                 <MdLocalShipping />
                 <span className="ml-1">Pod Date</span>
               </div>
-              <div>24 MAY 2022 11:43</div>
+              <div>{formatTanggal(orderData?.created_at)}</div>
             </div>
           </div>
         </div>
@@ -66,14 +102,12 @@ export default function Resi({ resi }: any) {
           </div>
           <div className="grid grid-cols-2 gap-5">
             <ul role="list" className="">
-              {[0, 1, 2].map((index) => (
+              {orderData?.order_histories?.map((value, index: number) => (
                 <li key={index} className="border-b relative">
                   <div className="border-l-4 ml-2 p-3 before:absolute before:w-3 before:h-3 before:rounded-full before:bg-slate-100 before:border before:border-slate-300 before:left-1 before:top-5">
-                    <div className="uppercase">
-                      SHIPMENT RECEIVED BY JNE COUNTER OFFICER AT [JAKARTA]
-                    </div>
+                    <div className="uppercase">{value.description}</div>
                     <div className="text-xs text-slate-400/80">
-                      23-12-2022 15.15
+                      {formatTanggal(value.created_at)}
                     </div>
                   </div>
                 </li>
@@ -81,7 +115,7 @@ export default function Resi({ resi }: any) {
             </ul>
             <div>
               <div>Receiver Name</div>
-              <div>Nisa</div>
+              <div>{orderData?.receiver_name}</div>
             </div>
           </div>
         </div>
@@ -97,21 +131,21 @@ export default function Resi({ resi }: any) {
                 <GiCargoShip />
                 <span className="ml-1">Shipment Date</span>
               </div>
-              <div>23-05-2022 16:52</div>
+              <div>{formatTanggal(orderData?.created_at)}</div>
             </div>
             <div>
               <div className="flex items-center text-gray-400">
                 <GiCargoShip />
                 <span className="ml-1">Koli</span>
               </div>
-              <div>1</div>
+              <div>{orderData?.koli}</div>
             </div>
             <div>
               <div className="flex items-center text-gray-400">
                 <GiCargoShip />
                 <span className="ml-1">Weight</span>
               </div>
-              <div>1 Kg</div>
+              <div>{orderData?.weight} Kg</div>
             </div>
           </div>
           <div>
@@ -119,7 +153,7 @@ export default function Resi({ resi }: any) {
               <GiCargoShip />
               <span className="ml-1">Good Description</span>
             </div>
-            <div>Mouse</div>
+            <div>{orderData?.contents}</div>
           </div>
         </div>
 
@@ -135,7 +169,7 @@ export default function Resi({ resi }: any) {
                 <GiCargoShip />
                 <span className="ml-1">Shipper Name</span>
               </div>
-              <div>Yuli</div>
+              <div>{orderData?.sender_name}</div>
             </div>
 
             <div>
@@ -143,7 +177,7 @@ export default function Resi({ resi }: any) {
                 <GiCargoShip />
                 <span className="ml-1">Shipper City</span>
               </div>
-              <div>JAKARTA</div>
+              <div>{orderData?.origin_name}</div>
             </div>
           </div>
         </div>

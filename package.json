@@ -17,6 +17,7 @@
     "@types/react": "17.0.39",
     "@types/react-slick": "^0.23.8",
     "autoprefixer": "^10.4.4",
+    "axios": "^0.27.2",
     "next": "12.1.5",
     "postcss": "^8.4.12",
     "react": "18.0.0",
