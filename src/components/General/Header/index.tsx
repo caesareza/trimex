@@ -9,9 +9,10 @@ import { useStoreActions, useStoreState } from 'easy-peasy'
 export default function Header() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isMenuShow, setIsMenuShow] = useState<boolean>(false)
-  const menuRef = useRef<any>(null)
   const { mainMenu } = useStoreState((state: any) => state.menu)
   const { addMenu } = useStoreActions((action: any) => action.menu)
+
+  const menuRef = useRef<any>(null)
 
   const handleClickOutside = (event: any) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -75,6 +76,13 @@ export default function Header() {
                     </Link>
                   </li>
                 ))}
+            <li>
+              <Link href="/contact">
+                <a className="px-2 text-slate-400 hover:text-yellow-300">
+                  Contact
+                </a>
+              </Link>
+            </li>
           </ul>
         </div>
       </section>
@@ -115,6 +123,11 @@ export default function Header() {
                     </Link>
                   </li>
                 ))}
+            <li>
+              <Link href="/contact">
+                <a className="p-5">Contact</a>
+              </Link>
+            </li>
           </ul>
 
           <button

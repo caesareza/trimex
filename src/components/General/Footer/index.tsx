@@ -49,6 +49,11 @@ export default function Footer() {
                 </a>
               </Link>
             ))}
+            <Link href="/contact">
+              <a className="px-2 text-slate-400 hover:text-yellow-300">
+                Beranda
+              </a>
+            </Link>
           </nav>
           <div className="border-t border-slate-500 text-center p-5">
             Copyright © {year} terimaexpress.com. All rights reserved.
