@@ -7,6 +7,7 @@ import { getOrderDetail } from '@/requests/services/order'
 import { IResponse } from '@/type/global'
 import TrackingLoader from '@/components/Loader/TrackingLoader'
 import { formatTanggal } from '@/requests/helper'
+import Alert from '@/components/General/Atom/Alert'
 
 type IResi = {
   resi: number
@@ -38,9 +39,7 @@ export default function Resi({ resi }: IResi) {
     return (
       <div className="p-5 container mx-auto">
         <h1 className="text-2xl font-bold text-center">Track Your Order</h1>
-        <p className="p-3 bg-amber-100 border border-amber-200 mt-5 text-amber-600 rounded">
-          Resi tidak ditemukan
-        </p>
+        <Alert message="Resi tidak ditemukan" />
       </div>
     )
   }

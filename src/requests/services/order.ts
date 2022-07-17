@@ -1,6 +1,6 @@
 import { getAxiosConfig } from '@/requests/axiosInstance'
 
-const resolver = getAxiosConfig(true)
+const resolver = getAxiosConfig(false)
 const URL_PATH = '/orders'
 
 /**
