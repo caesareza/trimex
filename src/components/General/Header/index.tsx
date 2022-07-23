@@ -60,9 +60,7 @@ export default function Header() {
           <ul className="">
             <li>
               <Link href="/">
-                <a className="px-2 text-slate-400 hover:text-yellow-300">
-                  Beranda
-                </a>
+                <a className="p-5 text-2xl p-5 border-b block">Beranda</a>
               </Link>
             </li>
             {isLoading
@@ -78,9 +76,7 @@ export default function Header() {
                 ))}
             <li>
               <Link href="/contact">
-                <a className="px-2 text-slate-400 hover:text-yellow-300">
-                  Contact
-                </a>
+                <a className="p-5 text-2xl p-5 border-b block">Contact</a>
               </Link>
             </li>
           </ul>
