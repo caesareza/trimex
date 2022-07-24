@@ -3,12 +3,16 @@ import '../styles/globals.css'
 import '../styles/slick.min.css'
 import type { AppProps } from 'next/app'
 import MainLayout from '@/components/MainLayout'
+import { StoreProvider } from 'easy-peasy'
+import { store } from '@/requests/store'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <MainLayout>
-      <Component {...pageProps} />
-    </MainLayout>
+    <StoreProvider store={store}>
+      <MainLayout>
+        <Component {...pageProps} />
+      </MainLayout>
+    </StoreProvider>
   )
 }
 

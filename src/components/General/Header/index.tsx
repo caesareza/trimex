@@ -1,12 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
-import { menu } from '@/data/menu'
-import { IMenu } from '@/type/global'
+import { IMenu, IResponse } from '@/type/global'
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
 import { IoMdClose } from 'react-icons/io'
+import { getAllPage } from '@/requests/services/pages'
+import { useStoreActions, useStoreState } from 'easy-peasy'
 
 export default function Header() {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isMenuShow, setIsMenuShow] = useState<boolean>(false)
+  const { mainMenu } = useStoreState((state: any) => state.menu)
+  const { addMenu } = useStoreActions((action: any) => action.menu)
+
   const menuRef = useRef<any>(null)
 
   const handleClickOutside = (event: any) => {
@@ -15,7 +20,23 @@ export default function Header() {
     }
   }
 
+  const fetchAllPages = async () => {
+    setIsLoading(true)
+
+    const response: any | IResponse = await getAllPage()
+
+    if (response.status !== 200) {
+      return
+    }
+
+    const { data } = response.data
+    addMenu(data)
+    setIsLoading(false)
+  }
+
   useEffect(() => {
+    fetchAllPages()
+
     document.addEventListener('click', handleClickOutside)
     return () => document.removeEventListener('click', handleClickOutside)
   }, [])
@@ -37,15 +58,27 @@ export default function Header() {
           </button>
           <h3 className="py-5">Menu</h3>
           <ul className="">
-            {menu.map((value: IMenu) => (
-              <li key={value.keys}>
-                <Link href={value.href} as={value.as}>
-                  <a className="p-5 text-2xl p-5 border-b block">
-                    {value.label}
-                  </a>
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link href="/">
+                <a className="p-5 text-2xl p-5 border-b block">Beranda</a>
+              </Link>
+            </li>
+            {isLoading
+              ? ''
+              : mainMenu?.map((value: IMenu) => (
+                  <li key={value.id}>
+                    <Link href="/site/[slug]" as={`/site/${value.slug}`}>
+                      <a className="p-5 text-2xl p-5 border-b block">
+                        {value.title}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+            <li>
+              <Link href="/contact">
+                <a className="p-5 text-2xl p-5 border-b block">Contact</a>
+              </Link>
+            </li>
           </ul>
         </div>
       </section>
@@ -72,13 +105,25 @@ export default function Header() {
             </a>
           </Link>
           <ul className="ml-0 lg:ml-auto hidden lg:flex">
-            {menu.map((value: IMenu) => (
-              <li key={value.keys}>
-                <Link href={value.href} as={value.as}>
-                  <a className="p-5">{value.label}</a>
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link href="/">
+                <a className="p-5">Beranda</a>
+              </Link>
+            </li>
+            {isLoading
+              ? ''
+              : mainMenu?.map((value: IMenu) => (
+                  <li key={value.id}>
+                    <Link href="/site/[slug]" as={`/site/${value.slug}`}>
+                      <a className="p-5">{value.title}</a>
+                    </Link>
+                  </li>
+                ))}
+            <li>
+              <Link href="/contact">
+                <a className="p-5">Contact</a>
+              </Link>
+            </li>
           </ul>
 
           <button

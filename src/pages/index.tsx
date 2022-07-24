@@ -94,6 +94,23 @@ const Home: NextPage = () => {
         </div>
       </div>
 
+      <div className="container mx-auto my-10">
+        <div className="p-5 flex">
+          <div>
+            <h2>
+              Tercepat dan Menjangkau seluruh pelosok Indonesia, menggunakan
+              pesawat sendiri.
+            </h2>
+            <p>
+              Dengan Lion Parcel, Anda dapat mengirim paket ke seluruh pelosok
+              Indonesia yang didukung oleh armada pesawat Lion Air Group, tanpa
+              khawatir menunggu terlalu lama
+            </p>
+          </div>
+          <div></div>
+        </div>
+      </div>
+
       <div className="flex items-center bg-slate-800 text-white">
         <div className="w-1/2 bg-slate-700/70 flex justify-end">
           <h2 className="p-10 text-2xl">

@@ -1,10 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
-import { menu } from '@/data/menu'
 import { IMenu } from '@/type/global'
+import { useStoreState } from 'easy-peasy'
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  const { mainMenu } = useStoreState((state: any) => state.menu)
 
   return (
     <footer className="bg-slate-700 text-white">
@@ -32,13 +33,27 @@ export default function Footer() {
             </div>
           </div>
           <nav className="text-center mb-5">
-            {menu.map((value: IMenu) => (
-              <Link href={value.href} as={value.as} key={value.keys}>
+            <Link href="/">
+              <a className="px-2 text-slate-400 hover:text-yellow-300">
+                Beranda
+              </a>
+            </Link>
+            {mainMenu?.map((value: IMenu) => (
+              <Link
+                href="/site/[slug]"
+                as={`/site/${value.slug}`}
+                key={value.id}
+              >
                 <a className="px-2 text-slate-400 hover:text-yellow-300">
-                  {value.label}
+                  {value.title}
                 </a>
               </Link>
             ))}
+            <Link href="/contact">
+              <a className="px-2 text-slate-400 hover:text-yellow-300">
+                Beranda
+              </a>
+            </Link>
           </nav>
           <div className="border-t border-slate-500 text-center p-5">
             Copyright © {year} terimaexpress.com. All rights reserved.
