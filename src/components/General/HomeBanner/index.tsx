@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import BannerLoader from '@/components/Loader/BannerLoader'
 import { getHomeBanner } from '@/requests/services/banner'
-import { IResponse } from '@/type/global'
 
 type IBanner = {
   id: number
@@ -28,13 +27,15 @@ export default function HomeBanner() {
 
   const fetchBanner = async () => {
     setIsLoading(true)
-    const response: any | IResponse = await getHomeBanner()
 
+    const response = await getHomeBanner()
+    // @ts-ignore
     if (response.status !== 200) {
       setIsLoading(false)
       return
     }
 
+    // @ts-ignore
     const { data } = response.data
     setBanners(data)
     setIsLoading(false)

@@ -5,8 +5,7 @@ const URL_PATH = '/home-banners'
 
 export const getHomeBanner = async () => {
   try {
-    const response = await resolver.get(`${URL_PATH}`)
-    return response
+    return await resolver.get(`${URL_PATH}`)
   } catch ({ response }) {
     return response
   }
