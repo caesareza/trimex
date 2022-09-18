@@ -1,40 +1,8 @@
+import { ChangeEvent, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import HomeBanner from '@/components/General/HomeBanner'
-import { ChangeEvent, useRef, useState } from 'react'
-
-type IDataCargo = {
-  id: string
-  image: string
-  title: string
-  desc: string
-}
-const dataCargo: IDataCargo[] = [
-  {
-    id: '01',
-    image: '/images/cargo/package.png',
-    title: 'Give us a Details',
-    desc: 'Extreme attention to detail is the essence of Boo’s unique.',
-  },
-  {
-    id: '02',
-    image: '/images/cargo/cargo.png',
-    title: 'Provide an quote',
-    desc: 'Extreme attention to detail is the essence of Boo’s unique.',
-  },
-  {
-    id: '03',
-    image: '/images/cargo/air-plane.png',
-    title: 'Confirm Your Date',
-    desc: 'Extreme attention to detail is the essence of Boo’s unique.',
-  },
-  {
-    id: '04',
-    image: '/images/cargo/shipping.png',
-    title: 'move easy & stress free',
-    desc: 'Extreme attention to detail is the essence of Boo’s unique.',
-  },
-]
+import { dataCargo } from '@/requests/data'
 
 const Home: NextPage = () => {
   const [trackingCode, setTrackingCode] = useState<string>('')
@@ -81,7 +49,7 @@ const Home: NextPage = () => {
 
       <div className="container mx-auto my-10">
         <div className="p-5 gap-5 grid grid-cols-2 lg:grid-cols-4">
-          {dataCargo.map((value, index) => (
+          {dataCargo?.map((value, index) => (
             <div key={index}>
               <img src={value.image} alt={value.title} width={100} />
               <div className="flex items-center my-3 font-bold">

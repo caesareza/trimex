@@ -48,12 +48,12 @@ export default function Resi({ resi }: IResi) {
     <section id="tracking-order">
       <div className="p-5 container mx-auto">
         <h1 className="text-2xl font-bold text-center">Track Your Order</h1>
-        <div className="text-lg text-slate-600 mb-5">
+        <div className="text-lg text-slate-600 mb-10">
           <div className="flex items-center border-b border-slate-300 py-2  text-2xl">
             <FaRegPaperPlane />
             <span className="ml-2">{resi}</span>
           </div>
-          <div className="grid grid-cols-5 gap-0">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-0">
             <div className="border p-5">
               <div className="flex items-center text-gray-400">
                 <GiCargoShip />
@@ -94,12 +94,12 @@ export default function Resi({ resi }: IResi) {
           </div>
         </div>
 
-        <div className="text-lg text-slate-600 mb-5">
+        <div className="text-lg text-slate-600 mb-10">
           <div className="flex items-center border-b border-slate-300 py-2 text-2xl mb-3">
             <FaHistory />
             <span className="ml-2">History Status</span>
           </div>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             <ul role="list" className="">
               {orderData?.order_histories?.map((value, index: number) => (
                 <li key={index} className="border-b relative">
@@ -119,12 +119,12 @@ export default function Resi({ resi }: IResi) {
           </div>
         </div>
 
-        <div className="text-lg text-slate-600 mb-5">
+        <div className="text-lg text-slate-600 mb-10">
           <div className="flex items-center border-b border-slate-300 py-2 text-2xl mb-3">
             <FaHistory />
             <span className="ml-2">Shippment Detail</span>
           </div>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             <div>
               <div className="flex items-center text-gray-400">
                 <GiCargoShip />
@@ -156,7 +156,7 @@ export default function Resi({ resi }: IResi) {
           </div>
         </div>
 
-        <div className="text-lg text-slate-600 mb-5">
+        <div className="text-lg text-slate-600 mb-10">
           <div className="flex items-center border-b border-slate-300 py-2 text-2xl mb-3">
             <FaHistory />
             <span className="ml-2">Shippment Information</span>
